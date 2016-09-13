@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo,test," />
+  <meta name="keywords" content="virtualenv,python," />
 
 
 
@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
+<meta name="description" content="使用virtualenv建立python虚拟运行环境install1sudo apt-get install python-virtualenv
+or1sudo easy_install virtualenv
+create virtual environment123➜  flaskdir virtualenv venvNew python executable in /Users/f001/fl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="just a test">
-<meta property="og:url" content="http://afoolboy.github.io/2016-09-test/index.html">
+<meta property="og:title" content="virtualenv">
+<meta property="og:url" content="http://afoolboy.github.io/2016-09-virtualenv/index.html">
 <meta property="og:site_name" content="A fool 13oy">
-<meta property="og:description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
-<meta property="og:updated_time" content="2016-09-08T11:57:35.000Z">
+<meta property="og:description" content="使用virtualenv建立python虚拟运行环境install1sudo apt-get install python-virtualenv
+or1sudo easy_install virtualenv
+create virtual environment123➜  flaskdir virtualenv venvNew python executable in /Users/f001/fl">
+<meta property="og:updated_time" content="2016-09-13T13:52:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="just a test">
-<meta name="twitter:description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
+<meta name="twitter:title" content="virtualenv">
+<meta name="twitter:description" content="使用virtualenv建立python虚拟运行环境install1sudo apt-get install python-virtualenv
+or1sudo easy_install virtualenv
+create virtual environment123➜  flaskdir virtualenv venvNew python executable in /Users/f001/fl">
 
 
 
@@ -120,9 +120,9 @@ bye!测试完毕">
 
 
 
-  <link rel="canonical" href="http://afoolboy.github.io/2016-09-test/"/>
+  <link rel="canonical" href="http://afoolboy.github.io/2016-09-virtualenv/"/>
 
-  <title> just a test | A fool 13oy </title>
+  <title> virtualenv | A fool 13oy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -232,7 +232,7 @@ bye!测试完毕">
             
             
               
-                just a test
+                virtualenv
               
             
           </h1>
@@ -244,8 +244,8 @@ bye!测试完毕">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T18:53:50+08:00" content="2016-09-08">
-              2016-09-08
+            <time itemprop="dateCreated" datetime="2016-09-13T21:46:10+08:00" content="2016-09-13">
+              2016-09-13
             </time>
           </span>
 
@@ -272,9 +272,12 @@ bye!测试完毕">
       
 
       
-        <h2 id="test-tile"><a href="#test-tile" class="headerlink" title="test tile"></a>test tile</h2><h3 id="test-subtitle"><a href="#test-subtitle" class="headerlink" title="test subtitle"></a>test subtitle</h3><p>test markdown code:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"Hello World"</span></div></pre></td></tr></table></figure></p>
-<hr>
-<p>bye!<br>测试完毕</p>
+        <h1 id="使用virtualenv建立python虚拟运行环境"><a href="#使用virtualenv建立python虚拟运行环境" class="headerlink" title="使用virtualenv建立python虚拟运行环境"></a>使用virtualenv建立python虚拟运行环境</h1><h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-virtualenv</div></pre></td></tr></table></figure>
+<p>or<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo easy_install virtualenv</div></pre></td></tr></table></figure></p>
+<h2 id="create-virtual-environment"><a href="#create-virtual-environment" class="headerlink" title="create virtual environment"></a>create virtual environment</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">➜  flaskdir virtualenv venv</div><div class="line">New python executable in /Users/f001/flaskdir/venv/bin/python</div><div class="line">Installing setuptools, pip, wheel...done.</div></pre></td></tr></table></figure>
+<h2 id="active-virtual-env"><a href="#active-virtual-env" class="headerlink" title="active virtual env"></a>active virtual env</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">source venv/bin/activate</div><div class="line">(venv) ➜  flaskdir</div></pre></td></tr></table></figure>
+<p>当虚拟环境被激活了，Python解释器的位置会被添加到 PATH 中，但是这个改动并不是永久的；它只影响当前命令会话。提醒一下，你激活了虚拟环境，该激活命令会将环境的名称包含在命令提示符里面：</p>
+<h2 id="modules"><a href="#modules" class="headerlink" title="modules"></a>modules</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pip freeze</div><div class="line">pip list</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -297,9 +300,9 @@ bye!测试完毕">
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
+            <a href="/tags/virtualenv/" rel="tag">#virtualenv</a>
           
-            <a href="/tags/test/" rel="tag">#test</a>
+            <a href="/tags/python/" rel="tag">#python</a>
           
         </div>
       
@@ -308,13 +311,13 @@ bye!测试完毕">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016-09-struct/" rel="next" title="struct">
+                <i class="fa fa-chevron-left"></i> struct
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016-09-struct/" rel="prev" title="struct">
-                struct <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,7 +424,7 @@ bye!测试完毕">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#test-tile"><span class="nav-number">1.</span> <span class="nav-text">test tile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#test-subtitle"><span class="nav-number">1.1.</span> <span class="nav-text">test subtitle</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用virtualenv建立python虚拟运行环境"><span class="nav-number">1.</span> <span class="nav-text">使用virtualenv建立python虚拟运行环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.1.</span> <span class="nav-text">install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#create-virtual-environment"><span class="nav-number">1.2.</span> <span class="nav-text">create virtual environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#active-virtual-env"><span class="nav-number">1.3.</span> <span class="nav-text">active virtual env</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#modules"><span class="nav-number">1.4.</span> <span class="nav-text">modules</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
