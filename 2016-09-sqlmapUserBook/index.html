@@ -84,19 +84,16 @@
 
 
 
-<meta name="description" content="sqlmap 用户手册介绍侦查并利用sql注入当你审计web应用并发现一个网页接受由用户提供的动态参数（如GET，POST，COOKIE）时，你想测试是否存在sql注入，并且想尽可能的从后台数据库获取更多的信息甚至是访问文件系统或者是操作系统，你可以这样做，假设目标url是：1http://192.168.136.131/sqlmap/mysql/get_int.php?id=1
-假设12345这">
+<meta name="description" content="sqlmap 用户手册介绍侦查并利用sql注入当你审计web应用并发现一个网页接受由用户提供的动态参数（如GET，POST，COOKIE）时，你想测试是否存在sql注入，并且想尽可能的从后台数据库获取更多的信息甚至是访问文件系统或者是操作系统，你可以这样做，假设目标url是：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sqlmapUserBook">
 <meta property="og:url" content="http://afoolboy.github.io/2016-09-sqlmapUserBook/index.html">
 <meta property="og:site_name" content="A fool 13oy">
-<meta property="og:description" content="sqlmap 用户手册介绍侦查并利用sql注入当你审计web应用并发现一个网页接受由用户提供的动态参数（如GET，POST，COOKIE）时，你想测试是否存在sql注入，并且想尽可能的从后台数据库获取更多的信息甚至是访问文件系统或者是操作系统，你可以这样做，假设目标url是：1http://192.168.136.131/sqlmap/mysql/get_int.php?id=1
-假设12345这">
-<meta property="og:updated_time" content="2016-09-15T06:44:46.000Z">
+<meta property="og:description" content="sqlmap 用户手册介绍侦查并利用sql注入当你审计web应用并发现一个网页接受由用户提供的动态参数（如GET，POST，COOKIE）时，你想测试是否存在sql注入，并且想尽可能的从后台数据库获取更多的信息甚至是访问文件系统或者是操作系统，你可以这样做，假设目标url是：">
+<meta property="og:updated_time" content="2016-09-15T06:46:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sqlmapUserBook">
-<meta name="twitter:description" content="sqlmap 用户手册介绍侦查并利用sql注入当你审计web应用并发现一个网页接受由用户提供的动态参数（如GET，POST，COOKIE）时，你想测试是否存在sql注入，并且想尽可能的从后台数据库获取更多的信息甚至是访问文件系统或者是操作系统，你可以这样做，假设目标url是：1http://192.168.136.131/sqlmap/mysql/get_int.php?id=1
-假设12345这">
+<meta name="twitter:description" content="sqlmap 用户手册介绍侦查并利用sql注入当你审计web应用并发现一个网页接受由用户提供的动态参数（如GET，POST，COOKIE）时，你想测试是否存在sql注入，并且想尽可能的从后台数据库获取更多的信息甚至是访问文件系统或者是操作系统，你可以这样做，假设目标url是：">
 
 
 
@@ -269,7 +266,7 @@
       
 
       
-        <h1 id="sqlmap-用户手册"><a href="#sqlmap-用户手册" class="headerlink" title="sqlmap 用户手册"></a>sqlmap 用户手册</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="侦查并利用sql注入"><a href="#侦查并利用sql注入" class="headerlink" title="侦查并利用sql注入"></a>侦查并利用sql注入</h3><p>当你审计web应用并发现一个网页接受由用户提供的动态参数（如GET，POST，COOKIE）时，你想测试是否存在sql注入，并且想尽可能的从后台数据库获取更多的信息甚至是访问文件系统或者是操作系统，你可以这样做，假设目标url是：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.136.131/sqlmap/mysql/get_int.php?id=1</div></pre></td></tr></table></figure></p>
+        <h1 id="sqlmap-用户手册"><a href="#sqlmap-用户手册" class="headerlink" title="sqlmap 用户手册"></a>sqlmap 用户手册</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="侦查并利用sql注入"><a href="#侦查并利用sql注入" class="headerlink" title="侦查并利用sql注入"></a>侦查并利用sql注入</h3><p>当你审计web应用并发现一个网页接受由用户提供的动态参数（如GET，POST，COOKIE）时，你想测试是否存在sql注入，并且想尽可能的从后台数据库获取更多的信息甚至是访问文件系统或者是操作系统，你可以这样做，假设目标url是：<br><a id="more"></a><br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://192.168.136.131/sqlmap/mysql/get_int.php?id=1</div></pre></td></tr></table></figure></p>
 <p>假设<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">这是一个在web应用中非常常见的web漏洞，它不局限于后端的操作系统，也不局限于web脚本语言。sql注入在OWASP中排名最高。现在你已经发现了有漏洞的参数额，你可以控制参数id来利用他。</div><div class="line"></div><div class="line">回到我们的剧本上，我们可以对sql的select语句进行合理性的猜测，假设这段php代码是这样的</div><div class="line">```php</div><div class="line">$query = &quot;SELECT [column name(s)] FROM [table name] WHERE id=&quot; . $_REQUEST[’id’];</div></pre></td></tr></table></figure></p>
 <p>当我们添加一个bool值为真的sql表达式时（比如  id = 1 and 1 = 1 )会返回和原请求返回相同的网页，是因为后端的数据库已经解析了被注入的sql语法。前面的例子简单的描述了布尔盲注，然而，sqlmap能够尝试进行各种sql注入并且适应网站的工作流程。<br>sqlmap可以自动化的识别和利用各种漏洞，把url交给sqlmap，它会</p>
 <ul>
