@@ -228,6 +228,124 @@
             
               
                 
+                <a class="post-title-link" href="/2016-09-ssh-proxy/" itemprop="url">
+                  ssh_proxy
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-25T20:40:47+08:00" content="2016-09-25">
+              2016-09-25
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>因为最近要开发一个网站，在调试的时候要把网站放到公网上，但是放在公网上网站在修改代码时，受到延迟的影响，以及多份代码不利于版本管理，所以想到把本地的http服务器代理到公网上进行调试测试，在这里使用ssh代理</p>
+<h2 id="ssh用法简介"><a href="#ssh用法简介" class="headerlink" title="ssh用法简介"></a>ssh用法简介</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">➜  ~ ssh</div><div class="line">usage: ssh [-1246AaCfGgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]</div><div class="line">           [-D [bind_address:]port] [-E log_file] [<span class="_">-e</span> escape_char]</div><div class="line">           [-F configfile] [-I pkcs11] [-i identity_file]</div><div class="line">           [-L [bind_address:]port:host:hostport] [<span class="_">-l</span> login_name] [-m mac_spec]</div><div class="line">           [-O ctl_cmd] [-o option] [-p port]</div><div class="line">           [-Q cipher | cipher-auth | mac | kex | key]</div><div class="line">           [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port]</div><div class="line">           [-w local_tun[:remote_tun]] [user@]hostname [<span class="built_in">command</span>]</div></pre></td></tr></table></figure>
+<p>这里说几个我们用到的参数：</p>
+<p><code>-f 后台运行
+-C 启动数据压缩传输
+-q 安静模式运行，忽略提示和错误
+-N 不执行命令，专为端口转发
+-L 正向代理
+-R 反向代理</code></p>
+<h2 id="正向代理"><a href="#正向代理" class="headerlink" title="正向代理"></a>正向代理</h2><p>[-L [bind_address:]port:host:hostport]</p>
+<p>前两个地址和端口 分别为 本地pc所能访问的地址和端口，host以及hostport是ssh服务端能访问的ip和端口<br>所以正向代理的功能就是，把本地访问到bind_address:port的数据代理到host:hostport处</p>
+<p>在这里用虚拟机做演示</p>
+<p>比如我想把本地的6666端口代理到192.168.31.179的22端口</p>
+<p>ssh -fCNL localhost:6666:192.168.31.179:22 root@192.168.31.179</p>
+<p>这样 当我输入 ssh root@localhost -p 6666的时候，实际上就ssh到了192.168.31.179的22端口上。</p>
+<h2 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>[-R [bind_address:]port:host:hostport]</p>
+<p>host:hostport是我们本地要代理出去的ip和端口，port就是我们要代理到公网上的端口</p>
+<p>比如 我现在想把本地7777端口代理到192.168.31.179的8888端口上</p>
+<p>ssh -fCNR 8888:localhost:7777 root@192.168.31.179</p>
+<p>这样 当我在179的机器上,nc 127.0.0.1 8888的时候，就会访问到我本地的7777端口。</p>
+<p>现在可以把我们本地http服务器的端口理解为7777，vps上代理到的端口就是8888，<br>当别人访问到<a href="http://vps_ip:8888端口时，实际上访问到的就是我们本地的http://localhosst:7777了。" target="_blank" rel="external">http://vps_ip:8888端口时，实际上访问到的就是我们本地的http://localhosst:7777了。</a></p>
+<h2 id="tips"><a href="#tips" class="headerlink" title="tips"></a>tips</h2><p>ssh反向代理到服务器上的端口，只能由服务器本地访问。<br>比如我把本地的a端口代理到服务器上的b端口，但是b端口只能由服务器本地访问，怎么办。<br>为此我们要再做一次正向代理。把服务器本地端口b代理到服务器本地0.0.0.0:c 端口，这样就相当于内网的服务器成功代理到公网上了。</p>
+<h2 id="Practice"><a href="#Practice" class="headerlink" title="Practice"></a>Practice</h2><p>在实践中，我们发现由于ssh连接过程中网络因素的不确定性，我们发现ssh代理经常断掉。好好的自动化代理变成了时不时的我们自己去维护，这一点也不清真！<br>所以，理想总是美好的，现实也是有解决办法的。（解决不了怎么办，自己写一个也要办）</p>
+<h2 id="持久化-解决方案-supervisor-autossh"><a href="#持久化-解决方案-supervisor-autossh" class="headerlink" title="持久化 解决方案 supervisor + autossh"></a>持久化 解决方案 supervisor + autossh</h2><p>supervisor是一款进程监视工具，autossh就理解为进化版的ssh吧</p>
+<p>我们在本地使用supervisor讲本地端口代理到vps上，在vps上可以用正向代理，也可以用nginx反向代理，具体方法看个人爱好了。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016-09-st3-theme-color/" itemprop="url">
                   st3_theme_color
                 </a>
@@ -736,7 +854,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -746,7 +864,7 @@
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>
