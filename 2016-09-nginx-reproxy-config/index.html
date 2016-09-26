@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo,test," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,22 +84,16 @@
 
 
 
-<meta name="description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
+<meta name="description" content="一个简单的nginx反向代理服务器的配置123456789101112131415161718192021222324252627282930313233343536user www-data;worker_processes 1;error_log /var/log/nginx/error.log;pid /var/run/nginx.pid;events &amp;#123;	use epoll;	w">
 <meta property="og:type" content="article">
-<meta property="og:title" content="just a test">
-<meta property="og:url" content="http://afoolboy.github.io/2016-09-test/index.html">
+<meta property="og:title" content="nginx_reproxy_config">
+<meta property="og:url" content="http://afoolboy.github.io/2016-09-nginx-reproxy-config/index.html">
 <meta property="og:site_name" content="A fool 13oy">
-<meta property="og:description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
-<meta property="og:updated_time" content="2016-09-08T11:57:35.000Z">
+<meta property="og:description" content="一个简单的nginx反向代理服务器的配置123456789101112131415161718192021222324252627282930313233343536user www-data;worker_processes 1;error_log /var/log/nginx/error.log;pid /var/run/nginx.pid;events &amp;#123;	use epoll;	w">
+<meta property="og:updated_time" content="2016-09-26T15:30:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="just a test">
-<meta name="twitter:description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
+<meta name="twitter:title" content="nginx_reproxy_config">
+<meta name="twitter:description" content="一个简单的nginx反向代理服务器的配置123456789101112131415161718192021222324252627282930313233343536user www-data;worker_processes 1;error_log /var/log/nginx/error.log;pid /var/run/nginx.pid;events &amp;#123;	use epoll;	w">
 
 
 
@@ -120,9 +114,9 @@ bye!测试完毕">
 
 
 
-  <link rel="canonical" href="http://afoolboy.github.io/2016-09-test/"/>
+  <link rel="canonical" href="http://afoolboy.github.io/2016-09-nginx-reproxy-config/"/>
 
-  <title> just a test | A fool 13oy </title>
+  <title> nginx_reproxy_config | A fool 13oy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -232,7 +226,7 @@ bye!测试完毕">
             
             
               
-                just a test
+                nginx_reproxy_config
               
             
           </h1>
@@ -244,8 +238,8 @@ bye!测试完毕">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T18:53:50+08:00" content="2016-09-08">
-              2016-09-08
+            <time itemprop="dateCreated" datetime="2016-09-26T23:29:49+08:00" content="2016-09-26">
+              2016-09-26
             </time>
           </span>
 
@@ -272,9 +266,7 @@ bye!测试完毕">
       
 
       
-        <h2 id="test-tile"><a href="#test-tile" class="headerlink" title="test tile"></a>test tile</h2><h3 id="test-subtitle"><a href="#test-subtitle" class="headerlink" title="test subtitle"></a>test subtitle</h3><p>test markdown code:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"Hello World"</span></div></pre></td></tr></table></figure></p>
-<hr>
-<p>bye!<br>测试完毕</p>
+        <h1 id="一个简单的nginx反向代理服务器的配置"><a href="#一个简单的nginx反向代理服务器的配置" class="headerlink" title="一个简单的nginx反向代理服务器的配置"></a>一个简单的nginx反向代理服务器的配置</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">user www-data;</div><div class="line">worker_processes 1;</div><div class="line"></div><div class="line">error_log /var/log/nginx/error.log;</div><div class="line"></div><div class="line">pid /var/run/nginx.pid;</div><div class="line"></div><div class="line">events &#123;</div><div class="line">	use epoll;</div><div class="line">	worker_connections 768;</div><div class="line">&#125;</div><div class="line"></div><div class="line">http &#123;</div><div class="line">	</div><div class="line">	proxy_next_upstream error;</div><div class="line"></div><div class="line">	upstream tornadoes &#123;</div><div class="line">		server 127.0.0.1:8080;</div><div class="line">	&#125;</div><div class="line"></div><div class="line"></div><div class="line">	server &#123;</div><div class="line">		listen 80;</div><div class="line">		server_name wx.foolzz.xyz *.xyz;</div><div class="line"></div><div class="line">		location / &#123;</div><div class="line">			proxy_pass_header Server;</div><div class="line">			proxy_set_header Host $http_host;</div><div class="line">			proxy_redirect off;</div><div class="line">			proxy_set_header X-Real-IP $remote_addr;</div><div class="line">			proxy_set_header X-Scheme $scheme;</div><div class="line">			proxy_pass http://tornadoes;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -295,26 +287,18 @@ bye!测试完毕">
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
-          
-            <a href="/tags/test/" rel="tag">#test</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016-09-ssh-proxy/" rel="next" title="ssh_proxy">
+                <i class="fa fa-chevron-left"></i> ssh_proxy
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016-09-struct/" rel="prev" title="struct">
-                struct <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,7 +405,7 @@ bye!测试完毕">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#test-tile"><span class="nav-number">1.</span> <span class="nav-text">test tile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#test-subtitle"><span class="nav-number">1.1.</span> <span class="nav-text">test subtitle</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一个简单的nginx反向代理服务器的配置"><span class="nav-number">1.</span> <span class="nav-text">一个简单的nginx反向代理服务器的配置</span></a></li></ol></div>
             
           </div>
         </section>
