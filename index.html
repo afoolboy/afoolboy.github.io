@@ -228,6 +228,138 @@
             
               
                 
+                <a class="post-title-link" href="/2016-09-module-datetime-calendar/" itemprop="url">
+                  module datetime,calendar
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-28T22:32:44+08:00" content="2016-09-28">
+              2016-09-28
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>python 中的 datetime库可以很容易的处理时</p>
+<p>以一道ctf为例</p>
+<blockquote>
+<p>September 11, 2003<br>November 2, 2009<br>April 6, 2004<br>May 24, 2007<br>December 25, 2005<br>July 25, 2009<br>September 17, 2015<br>April 3, 2006<br>February 21, 2007<br>June 20, 2016<br>January 1, 2010<br>December 9, 2008<br>October 31, 2009<br>February 20, 2004<br>January 31, 2002<br>March 27, 2016<br>May 16, 2014<br>June 7, 2003<br>February 6, 2013<br>January 28, 2001<br>March 25, 2005<br>March 21, 2001<br>July 8, 2008<br>November 22, 2016</p>
+</blockquote>
+<p>我们要统计的日期具有这样的性质，它明年的今天，是星期五。<br>所以，我们的思路是读取文件，格式化为datetime对象，判断一年后的今天是否为星期五。</p>
+<pre><code class="py"><span class="comment">#coding=utf-8</span>
+
+<span class="keyword">import</span> locale
+<span class="keyword">import</span> calendar
+<span class="keyword">from</span> datetime <span class="keyword">import</span> datetime
+
+
+<span class="string">"""
+Friday is the best day of the week, and so I really want to know how many Fridays there are in this file. But, with a twist. I want to know how many Fridays there are one year later than each date."""</span>
+
+locale.setlocale(locale.LC_ALL,<span class="string">'en_US.UTF-8'</span>)
+calendar.setfirstweekday(calendar.MONDAY)
+
+date_format = <span class="string">"%B %d, %Y"</span>
+
+count = <span class="number">0</span>
+
+<span class="keyword">with</span> open(<span class="string">"date.txt"</span>) <span class="keyword">as</span> date_file:
+    <span class="keyword">for</span> line <span class="keyword">in</span> date_file:
+        date_str = line.strip()
+        date_obj = datetime.strptime(date_str,date_format)
+
+        <span class="keyword">if</span> <span class="keyword">not</span> (calendar.isleap(date_obj.year) <span class="keyword">and</span> date_obj.day == <span class="number">29</span>):
+            date_obj = date_obj.replace(year = date_obj.year +<span class="number">1</span>)
+
+            <span class="keyword">if</span> date_obj.isoweekday() == <span class="number">5</span>:
+                count += <span class="number">1</span>
+                <span class="keyword">pass</span>
+        <span class="keyword">elif</span> int(date_obj.strftime(<span class="string">"%m"</span>)) == <span class="number">2</span>:
+            <span class="keyword">print</span> <span class="string">"find one 2,29"</span>
+
+<span class="keyword">print</span> <span class="string">"abctf{%d}"</span>%(count,)
+</code></pre>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016-09-nginx-reproxy-config/" itemprop="url">
                   nginx_reproxy_config
                 </a>
@@ -948,7 +1080,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">8</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
