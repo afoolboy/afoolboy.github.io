@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo,test," />
+  <meta name="keywords" content="pwn," />
 
 
 
@@ -84,22 +84,25 @@
 
 
 
-<meta name="description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
+<meta name="description" content="题目
+Mommy! what is a file descriptor in Linux?ssh fd@pwnable.kr -p2222 (pw:guest)
 
-bye!测试完毕">
+solve首先ssh登陆到服务器上12345678910fd@ubuntu:~$ ls -altotal 36drwxr-x---  4 root fd   4096 Jul  1 02:36 .dr-xr-xr-x 66 root r">
 <meta property="og:type" content="article">
-<meta property="og:title" content="just a test">
-<meta property="og:url" content="http://me.foolzz.xyz/2016-09-test/index.html">
+<meta property="og:title" content="pwnable-1-fd">
+<meta property="og:url" content="http://me.foolzz.xyz/2016-09-pwnable-1-fd/index.html">
 <meta property="og:site_name" content="A fool 13oy">
-<meta property="og:description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
+<meta property="og:description" content="题目
+Mommy! what is a file descriptor in Linux?ssh fd@pwnable.kr -p2222 (pw:guest)
 
-bye!测试完毕">
-<meta property="og:updated_time" content="2016-09-08T11:57:35.000Z">
+solve首先ssh登陆到服务器上12345678910fd@ubuntu:~$ ls -altotal 36drwxr-x---  4 root fd   4096 Jul  1 02:36 .dr-xr-xr-x 66 root r">
+<meta property="og:updated_time" content="2016-09-30T13:14:10.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="just a test">
-<meta name="twitter:description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
+<meta name="twitter:title" content="pwnable-1-fd">
+<meta name="twitter:description" content="题目
+Mommy! what is a file descriptor in Linux?ssh fd@pwnable.kr -p2222 (pw:guest)
 
-bye!测试完毕">
+solve首先ssh登陆到服务器上12345678910fd@ubuntu:~$ ls -altotal 36drwxr-x---  4 root fd   4096 Jul  1 02:36 .dr-xr-xr-x 66 root r">
 
 
 
@@ -120,9 +123,9 @@ bye!测试完毕">
 
 
 
-  <link rel="canonical" href="http://me.foolzz.xyz/2016-09-test/"/>
+  <link rel="canonical" href="http://me.foolzz.xyz/2016-09-pwnable-1-fd/"/>
 
-  <title> just a test | A fool 13oy </title>
+  <title> pwnable-1-fd | A fool 13oy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -232,7 +235,7 @@ bye!测试完毕">
             
             
               
-                just a test
+                pwnable-1-fd
               
             
           </h1>
@@ -244,8 +247,8 @@ bye!测试完毕">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T18:53:50+08:00" content="2016-09-08">
-              2016-09-08
+            <time itemprop="dateCreated" datetime="2016-09-30T21:13:41+08:00" content="2016-09-30">
+              2016-09-30
             </time>
           </span>
 
@@ -272,9 +275,15 @@ bye!测试完毕">
       
 
       
-        <h2 id="test-tile"><a href="#test-tile" class="headerlink" title="test tile"></a>test tile</h2><h3 id="test-subtitle"><a href="#test-subtitle" class="headerlink" title="test subtitle"></a>test subtitle</h3><p>test markdown code:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"Hello World"</span></div></pre></td></tr></table></figure></p>
-<hr>
-<p>bye!<br>测试完毕</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Mommy! what is a file descriptor in Linux?<br>ssh fd@pwnable.kr -p2222 (pw:guest)</p>
+</blockquote>
+<h2 id="solve"><a href="#solve" class="headerlink" title="solve"></a>solve</h2><p>首先ssh登陆到服务器上<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">fd@ubuntu:~$ ls -al</div><div class="line">total 36</div><div class="line">drwxr-x---  4 root fd   4096 Jul  1 02:36 .</div><div class="line">dr-xr-xr-x 66 root root 4096 Jul 13 06:44 ..</div><div class="line">d---------  2 root root 4096 Jun 12  2014 .bash_history</div><div class="line">-r-sr-x---  1 fd2  fd   7322 Jun 11  2014 fd</div><div class="line">-rw-r--r--  1 root root  418 Jun 11  2014 fd.c</div><div class="line">-r--r-----  1 fd2  root   50 Jun 11  2014 flag</div><div class="line">-rw-------  1 root root   80 May 29 09:13 .gdb_history</div><div class="line">dr-xr-xr-x  2 root root 4096 Aug 20  2014 .irssi</div></pre></td></tr></table></figure></p>
+<p>代码如下:fd.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="keyword">char</span> buf[<span class="number">32</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[], <span class="keyword">char</span>* envp[])</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"pass argv[1] a number\n"</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> fd = atoi( argv[<span class="number">1</span>] ) - <span class="number">0x1234</span>;</div><div class="line">	<span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">	len = read(fd, buf, <span class="number">32</span>);</div><div class="line">	<span class="keyword">if</span>(!<span class="built_in">strcmp</span>(<span class="string">"LETMEWIN\n"</span>, buf))&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"good job :)\n"</span>);</div><div class="line">		system(<span class="string">"/bin/cat flag"</span>);</div><div class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"learn about Linux file IO\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>因为fd程序具有s权限，我们通过执行fd从而读取flag文件，这样思路就很清晰了。</p>
+<p>0x1234 = 4660</p>
+<p>执行程序输入4600，从STDIN中读取字符串进入if读取flag.<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fd@ubuntu:~$ ./fd 4660</div><div class="line">LETMEWIN</div><div class="line">good job :)</div><div class="line">mommy! I think I know what a file descriptor is!!</div></pre></td></tr></table></figure></p>
+<p>flag:mommy! I think I know what a file descriptor is!!</p>
 
       
     </div>
@@ -297,9 +306,7 @@ bye!测试完毕">
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
-          
-            <a href="/tags/test/" rel="tag">#test</a>
+            <a href="/tags/pwn/" rel="tag">#pwn</a>
           
         </div>
       
@@ -308,12 +315,16 @@ bye!测试完毕">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016-09-module-datetime-calendar/" rel="next" title="module datetime,calendar">
+                <i class="fa fa-chevron-left"></i> module datetime,calendar
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016-09-struct/" rel="prev" title="struct">
-                struct <i class="fa fa-chevron-right"></i>
+              <a href="/2016-09-pwnable-2-collision/" rel="prev" title="pwnable-2-collision">
+                pwnable-2-collision <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -421,7 +432,7 @@ bye!测试完毕">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#test-tile"><span class="nav-number">1.</span> <span class="nav-text">test tile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#test-subtitle"><span class="nav-number">1.1.</span> <span class="nav-text">test subtitle</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solve"><span class="nav-number">2.</span> <span class="nav-text">solve</span></a></li></ol></div>
             
           </div>
         </section>

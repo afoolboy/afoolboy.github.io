@@ -228,6 +228,212 @@
             
               
                 
+                <a class="post-title-link" href="/2016-09-pwnable-2-collision/" itemprop="url">
+                  pwnable-2-collision
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-30T21:14:37+08:00" content="2016-09-30">
+              2016-09-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Daddy told me about cool MD5 hash collision today.<br>I wanna do something like that too!</p>
+<p>ssh col@pwnable.kr -p2222 (pw:guest)</p>
+<h2 id="solve"><a href="#solve" class="headerlink" title="solve"></a>solve</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">col@ubuntu:~$ ls -la</div><div class="line">total 32</div><div class="line">drwxr-x---  4 root col  4096 Aug 20  2014 .</div><div class="line">dr-xr-xr-x 66 root root 4096 Jul 13 06:44 ..</div><div class="line">d---------  2 root root 4096 Jun 12  2014 .bash_history</div><div class="line">-r-sr-x---  1 col2 col  7341 Jun 11  2014 col</div><div class="line">-rw-r--r--  1 root root  555 Jun 12  2014 col.c</div><div class="line">-r--r-----  1 col2 col2   52 Jun 11  2014 flag</div><div class="line">dr-xr-xr-x  2 root root 4096 Aug 20  2014 .irssi</div></pre></td></tr></table></figure>
+<p>col.c代码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> hashcode = <span class="number">0x21DD09EC</span>;</div><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="title">check_password</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* p)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span>* ip = (<span class="keyword">int</span>*)p;</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	<span class="keyword">int</span> res=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)&#123;</div><div class="line">		res += ip[i];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"usage : %s [passcode]\n"</span>, argv[<span class="number">0</span>]);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(<span class="built_in">strlen</span>(argv[<span class="number">1</span>]) != <span class="number">20</span>)&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"passcode length should be 20 bytes\n"</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(hashcode == check_password( argv[<span class="number">1</span>] ))&#123;</div><div class="line">		system(<span class="string">"/bin/cat flag"</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="built_in">printf</span>(<span class="string">"wrong passcode.\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输入一个20个字符的字符串，程序会把它转化为5个int数相加，所以我们只要想办法凑足5个数的和是0x21DD09EC就可以了，要注意不能有空字符。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ python -c <span class="string">"print '\xc8\xce\xc5\x06'*4+'\xcc\xce\xc5\06'"</span></div><div class="line">���������������</div></pre></td></tr></table></figure>
+<p>竟然是乱码</p>
+<p>幸好乱码程序也可以接受</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./col `python -c <span class="string">"print '\xc8\xce\xc5\x06'*4+'\xcc\xce\xc5\06'"</span>`</div><div class="line">daddy! I just managed to create a <span class="built_in">hash</span> collision :)</div></pre></td></tr></table></figure>
+<p>flag:daddy! I just managed to create a hash collision :)</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016-09-pwnable-1-fd/" itemprop="url">
+                  pwnable-1-fd
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-09-30T21:13:41+08:00" content="2016-09-30">
+              2016-09-30
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><blockquote>
+<p>Mommy! what is a file descriptor in Linux?<br>ssh fd@pwnable.kr -p2222 (pw:guest)</p>
+</blockquote>
+<h2 id="solve"><a href="#solve" class="headerlink" title="solve"></a>solve</h2><p>首先ssh登陆到服务器上<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">fd@ubuntu:~$ ls -al</div><div class="line">total 36</div><div class="line">drwxr-x---  4 root fd   4096 Jul  1 02:36 .</div><div class="line">dr-xr-xr-x 66 root root 4096 Jul 13 06:44 ..</div><div class="line">d---------  2 root root 4096 Jun 12  2014 .bash_history</div><div class="line">-r-sr-x---  1 fd2  fd   7322 Jun 11  2014 fd</div><div class="line">-rw-r--r--  1 root root  418 Jun 11  2014 fd.c</div><div class="line">-r--r-----  1 fd2  root   50 Jun 11  2014 flag</div><div class="line">-rw-------  1 root root   80 May 29 09:13 .gdb_history</div><div class="line">dr-xr-xr-x  2 root root 4096 Aug 20  2014 .irssi</div></pre></td></tr></table></figure></p>
+<p>代码如下:fd.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="keyword">char</span> buf[<span class="number">32</span>];</div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[], <span class="keyword">char</span>* envp[])</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"pass argv[1] a number\n"</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">int</span> fd = atoi( argv[<span class="number">1</span>] ) - <span class="number">0x1234</span>;</div><div class="line">	<span class="keyword">int</span> len = <span class="number">0</span>;</div><div class="line">	len = read(fd, buf, <span class="number">32</span>);</div><div class="line">	<span class="keyword">if</span>(!<span class="built_in">strcmp</span>(<span class="string">"LETMEWIN\n"</span>, buf))&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"good job :)\n"</span>);</div><div class="line">		system(<span class="string">"/bin/cat flag"</span>);</div><div class="line">		<span class="built_in">exit</span>(<span class="number">0</span>);</div><div class="line">	&#125;</div><div class="line">	<span class="built_in">printf</span>(<span class="string">"learn about Linux file IO\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>因为fd程序具有s权限，我们通过执行fd从而读取flag文件，这样思路就很清晰了。</p>
+<p>0x1234 = 4660</p>
+<p>执行程序输入4600，从STDIN中读取字符串进入if读取flag.<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fd@ubuntu:~$ ./fd 4660</div><div class="line">LETMEWIN</div><div class="line">good job :)</div><div class="line">mommy! I think I know what a file descriptor is!!</div></pre></td></tr></table></figure></p>
+<p>flag:mommy! I think I know what a file descriptor is!!</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016-09-module-datetime-calendar/" itemprop="url">
                   module datetime,calendar
                 </a>
@@ -1083,7 +1289,7 @@ count = <span class="number">0</span>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -1093,7 +1299,7 @@ count = <span class="number">0</span>
           
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-count">13</span>
                 <span class="site-state-item-name">tags</span>
               
             </div>

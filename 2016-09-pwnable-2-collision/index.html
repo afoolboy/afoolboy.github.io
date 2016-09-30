@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="hexo,test," />
+  <meta name="keywords" content="pwn," />
 
 
 
@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
+<meta name="description" content="题目Daddy told me about cool MD5 hash collision today.I wanna do something like that too!
+ssh col@pwnable.kr -p2222 (pw:guest)
+solve123456789col@ubuntu:~$ ls -latotal 32drwxr-x---  4 root col  4096 Aug">
 <meta property="og:type" content="article">
-<meta property="og:title" content="just a test">
-<meta property="og:url" content="http://me.foolzz.xyz/2016-09-test/index.html">
+<meta property="og:title" content="pwnable-2-collision">
+<meta property="og:url" content="http://me.foolzz.xyz/2016-09-pwnable-2-collision/index.html">
 <meta property="og:site_name" content="A fool 13oy">
-<meta property="og:description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
-<meta property="og:updated_time" content="2016-09-08T11:57:35.000Z">
+<meta property="og:description" content="题目Daddy told me about cool MD5 hash collision today.I wanna do something like that too!
+ssh col@pwnable.kr -p2222 (pw:guest)
+solve123456789col@ubuntu:~$ ls -latotal 32drwxr-x---  4 root col  4096 Aug">
+<meta property="og:updated_time" content="2016-09-30T13:15:00.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="just a test">
-<meta name="twitter:description" content="test tiletest subtitletest markdown code:1echo &quot;Hello World&quot;
-
-bye!测试完毕">
+<meta name="twitter:title" content="pwnable-2-collision">
+<meta name="twitter:description" content="题目Daddy told me about cool MD5 hash collision today.I wanna do something like that too!
+ssh col@pwnable.kr -p2222 (pw:guest)
+solve123456789col@ubuntu:~$ ls -latotal 32drwxr-x---  4 root col  4096 Aug">
 
 
 
@@ -120,9 +120,9 @@ bye!测试完毕">
 
 
 
-  <link rel="canonical" href="http://me.foolzz.xyz/2016-09-test/"/>
+  <link rel="canonical" href="http://me.foolzz.xyz/2016-09-pwnable-2-collision/"/>
 
-  <title> just a test | A fool 13oy </title>
+  <title> pwnable-2-collision | A fool 13oy </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -232,7 +232,7 @@ bye!测试完毕">
             
             
               
-                just a test
+                pwnable-2-collision
               
             
           </h1>
@@ -244,8 +244,8 @@ bye!测试完毕">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-09-08T18:53:50+08:00" content="2016-09-08">
-              2016-09-08
+            <time itemprop="dateCreated" datetime="2016-09-30T21:14:37+08:00" content="2016-09-30">
+              2016-09-30
             </time>
           </span>
 
@@ -272,9 +272,17 @@ bye!测试完毕">
       
 
       
-        <h2 id="test-tile"><a href="#test-tile" class="headerlink" title="test tile"></a>test tile</h2><h3 id="test-subtitle"><a href="#test-subtitle" class="headerlink" title="test subtitle"></a>test subtitle</h3><p>test markdown code:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">echo</span> <span class="string">"Hello World"</span></div></pre></td></tr></table></figure></p>
-<hr>
-<p>bye!<br>测试完毕</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>Daddy told me about cool MD5 hash collision today.<br>I wanna do something like that too!</p>
+<p>ssh col@pwnable.kr -p2222 (pw:guest)</p>
+<h2 id="solve"><a href="#solve" class="headerlink" title="solve"></a>solve</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">col@ubuntu:~$ ls -la</div><div class="line">total 32</div><div class="line">drwxr-x---  4 root col  4096 Aug 20  2014 .</div><div class="line">dr-xr-xr-x 66 root root 4096 Jul 13 06:44 ..</div><div class="line">d---------  2 root root 4096 Jun 12  2014 .bash_history</div><div class="line">-r-sr-x---  1 col2 col  7341 Jun 11  2014 col</div><div class="line">-rw-r--r--  1 root root  555 Jun 12  2014 col.c</div><div class="line">-r--r-----  1 col2 col2   52 Jun 11  2014 flag</div><div class="line">dr-xr-xr-x  2 root root 4096 Aug 20  2014 .irssi</div></pre></td></tr></table></figure>
+<p>col.c代码如下</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></div><div class="line"><span class="keyword">unsigned</span> <span class="keyword">long</span> hashcode = <span class="number">0x21DD09EC</span>;</div><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="title">check_password</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* p)</span></span>&#123;</div><div class="line">	<span class="keyword">int</span>* ip = (<span class="keyword">int</span>*)p;</div><div class="line">	<span class="keyword">int</span> i;</div><div class="line">	<span class="keyword">int</span> res=<span class="number">0</span>;</div><div class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++)&#123;</div><div class="line">		res += ip[i];</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">return</span> res;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;</div><div class="line">	<span class="keyword">if</span>(argc&lt;<span class="number">2</span>)&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"usage : %s [passcode]\n"</span>, argv[<span class="number">0</span>]);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">if</span>(<span class="built_in">strlen</span>(argv[<span class="number">1</span>]) != <span class="number">20</span>)&#123;</div><div class="line">		<span class="built_in">printf</span>(<span class="string">"passcode length should be 20 bytes\n"</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	<span class="keyword">if</span>(hashcode == check_password( argv[<span class="number">1</span>] ))&#123;</div><div class="line">		system(<span class="string">"/bin/cat flag"</span>);</div><div class="line">		<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">	&#125;</div><div class="line">	<span class="keyword">else</span></div><div class="line">		<span class="built_in">printf</span>(<span class="string">"wrong passcode.\n"</span>);</div><div class="line">	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输入一个20个字符的字符串，程序会把它转化为5个int数相加，所以我们只要想办法凑足5个数的和是0x21DD09EC就可以了，要注意不能有空字符。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ python -c <span class="string">"print '\xc8\xce\xc5\x06'*4+'\xcc\xce\xc5\06'"</span></div><div class="line">���������������</div></pre></td></tr></table></figure>
+<p>竟然是乱码</p>
+<p>幸好乱码程序也可以接受</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ ./col `python -c <span class="string">"print '\xc8\xce\xc5\x06'*4+'\xcc\xce\xc5\06'"</span>`</div><div class="line">daddy! I just managed to create a <span class="built_in">hash</span> collision :)</div></pre></td></tr></table></figure>
+<p>flag:daddy! I just managed to create a hash collision :)</p>
 
       
     </div>
@@ -297,9 +305,7 @@ bye!测试完毕">
       
         <div class="post-tags">
           
-            <a href="/tags/hexo/" rel="tag">#hexo</a>
-          
-            <a href="/tags/test/" rel="tag">#test</a>
+            <a href="/tags/pwn/" rel="tag">#pwn</a>
           
         </div>
       
@@ -308,13 +314,13 @@ bye!测试完毕">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016-09-pwnable-1-fd/" rel="next" title="pwnable-1-fd">
+                <i class="fa fa-chevron-left"></i> pwnable-1-fd
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016-09-struct/" rel="prev" title="struct">
-                struct <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,7 +427,7 @@ bye!测试完毕">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#test-tile"><span class="nav-number">1.</span> <span class="nav-text">test tile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#test-subtitle"><span class="nav-number">1.1.</span> <span class="nav-text">test subtitle</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#solve"><span class="nav-number">2.</span> <span class="nav-text">solve</span></a></li></ol></div>
             
           </div>
         </section>
